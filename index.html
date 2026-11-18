@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAYA — UX/UI Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#17181a;--p:#1f2023;--ln:#3a3c40;--ink:#ece9df;--dim:#8b8e92;--hot:#ff2a3d;--y:#f4e90c;--g:rgba(255,42,61,.45);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font:400 13px/1.45 "Roboto Mono",ui-monospace,Menlo,monospace}
+body{background-image:radial-gradient(#2d2f33 1px,transparent 1.3px);background-size:6px 6px}
+button,a{font:inherit;color:inherit;text-decoration:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--y);outline-offset:2px}
+#app{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.hd{font-family:Rajdhani,"Arial Narrow",Impact,sans-serif;text-transform:uppercase}
+/* NAV */
+#top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 20px;height:56px;background:rgba(23,24,26,.92);border-bottom:1px solid var(--ln)}
+.logo{width:30px;height:30px;color:var(--ink)}
+.tabs{display:flex;gap:2px;align-self:start}
+.tab{font:700 21px Rajdhani,Impact,sans-serif;text-transform:uppercase;background:none;border:0;padding:15px 20px 12px;position:relative;color:var(--ink);transition:background .15s}
+.tab i{font:400 9px "Roboto Mono",monospace;color:var(--dim);margin-right:6px;vertical-align:super;font-style:normal}
+.tab:hover{background:#2a2c30}
+.tab.on{background:var(--hot);clip-path:polygon(0 0,100% 0,100% 60%,90% 100%,10% 100%,0 60%)}
+.tab.on i{color:#fff}
+.tab.play{background:var(--ink);color:#141414;margin-left:10px;clip-path:polygon(0 0,100% 0,100% 60%,90% 100%,10% 100%,0 60%);padding-inline:24px}
+.tab.play b{display:inline-block;margin-right:7px;animation:pl 1.2s steps(2) infinite}
+.tab.play:hover{background:#fff}
+.tab.play.on{background:var(--hot);color:#fff}
+@keyframes pl{50%{transform:translateX(3px)}}
+.util{justify-self:end;display:flex;gap:14px;align-items:center}
+.util a.s{font:700 18px Rajdhani,sans-serif;color:var(--dim)}
+.util a.s:hover{color:var(--ink)}
+.cv{border:1.5px solid var(--ink);padding:5px 12px;font:700 15px Rajdhani,sans-serif;letter-spacing:.04em}
+.cv:hover{background:var(--ink);color:#141414}
+#cur{display:none}
+/* STAGE */
+#stage{position:relative;min-height:0}
+.scr{display:none;height:100%;padding:16px 20px;gap:12px;min-height:0;overflow:hidden}
+.scr.on{display:grid;animation:in .3s steps(5)}
+@keyframes in{from{opacity:0;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0)}}
+.pn{background:rgba(31,32,35,.88);border:1px solid var(--ln);position:relative;min-height:0;min-width:0;padding:12px;overflow:hidden}
+.pn:before{content:"";position:absolute;top:-1px;left:-1px;width:12px;height:12px;border-top:2px solid var(--hot);border-left:2px solid var(--hot)}
+.lab{font-size:10px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+h2{font:700 36px/1 Rajdhani,sans-serif;text-transform:uppercase}
+pre{font-family:"Roboto Mono",monospace;line-height:1;white-space:pre;overflow:hidden}
+.chip{display:inline-block;border:1px solid var(--ln);padding:2px 8px;font-size:11px;color:var(--dim);margin:0 4px 4px 0}
+.chip.h{border-color:var(--hot);color:var(--hot)}
+/* MENU */
+#s0{grid-template-rows:minmax(0,1fr) auto;padding-top:8px}
+.hw{position:relative;min-height:0}
+.hw pre{position:absolute;inset:0;color:var(--ink)}
+#hero2{color:var(--hot)!important;animation:sw 4.5s linear infinite}
+@keyframes sw{from{clip-path:inset(0 0 94% 0)}to{clip-path:inset(94% 0 0 0)}}
+.big{font:700 clamp(18px,2.3vw,29px)/1.12 Rajdhani,sans-serif;max-width:980px;color:var(--ink)}
+.big em{font-style:normal;color:var(--hot)}
+.meta{margin-top:10px}
+/* ABOUT */
+.por{}
+#s1{grid-template-columns:minmax(190px,24%) minmax(0,1fr)}
+.am{display:grid;grid-template-rows:auto minmax(0,1fr);gap:10px;min-height:0}
+.av{display:grid;gap:12px;min-height:0;grid-template-columns:minmax(0,1fr) minmax(280px,42%)}
+.rs{display:flex;align-items:center;gap:14px;margin:8px 0 10px;padding-bottom:10px;border-bottom:1px solid var(--ln)}
+.rs svg{width:46px;height:46px;flex:none}.rs>div:nth-child(2){flex:1;min-width:70px}.rs .xp{margin:4px 0 0}
+.k2{text-align:center}.k2 b{font:700 22px/1 Rajdhani,sans-serif;display:block}.k2 span{font-size:10px;color:var(--dim)}
+.por{display:flex;flex-direction:column}
+.por .w{flex:1;min-height:0;position:relative}
+.por pre{position:absolute;inset:0;color:var(--ink)}
+.bar{display:grid;grid-template-columns:100px 1fr 20px;gap:8px;align-items:center;font-size:11px;margin-bottom:6px}
+.seg{display:grid;grid-template-columns:repeat(10,1fr);gap:2px}
+.seg s{height:8px;background:#2f3136}.seg s.f{background:var(--ink)}.seg s.f.l{background:var(--hot)}
+.inv{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.slot{aspect-ratio:1.25;background:#141517;border:1px solid var(--ln);display:grid;place-items:center;font:700 20px Rajdhani,sans-serif;position:relative;color:var(--ink)}
+.slot:before{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;background:var(--c,var(--dim))}
+.slot.on{border-color:var(--hot);background:#2b1a1e}
+.slot:hover{border-color:var(--ink)}
+.slot.e{color:#3a3c40;cursor:default;border-style:dashed}
+#idesc{margin-top:10px;border-top:1px solid var(--ln);padding-top:8px}
+#idesc h3{font:700 22px Rajdhani,sans-serif;text-transform:uppercase}
+/* CASES */
+#s2{grid-template-columns:290px minmax(0,1fr)}
+.cl{display:flex;flex-direction:column;gap:6px}
+.cl button{background:var(--p);border:1px solid var(--ln);text-align:left;padding:10px 12px;display:grid;grid-template-columns:34px 1fr;align-items:center;color:var(--ink)}
+.cl button b{font:700 22px Rajdhani,sans-serif;color:var(--dim)}
+.cl button strong{font:700 19px Rajdhani,sans-serif;text-transform:uppercase;display:block;line-height:1.1}
+.cl button small{font-size:10px;color:var(--dim)}
+.cl button.on{border-color:var(--hot);background:#2b1a1e}.cl button.on b{color:var(--hot)}
+.cd{display:grid;grid-template-rows:minmax(0,38%) auto minmax(0,1fr);gap:10px}
+.cp{position:relative;padding:0}
+.cp pre{position:absolute;inset:0;color:#bdb9ad;opacity:.9}
+.cp div{position:absolute;left:14px;bottom:10px;right:14px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.cp h2{background:var(--bg);padding:2px 10px 2px 0;font-size:40px}
+.tb{display:flex;gap:4px}
+.tb button{background:none;border:1px solid var(--ln);padding:5px 16px;font:700 16px Rajdhani,sans-serif;text-transform:uppercase}
+.tb button.on{background:var(--ink);color:#141414;border-color:var(--ink)}
+.cx{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:16px}
+.cx p{font-size:13px;max-width:62ch}
+.st{display:flex;flex-direction:column;gap:6px}
+.st div{border-left:3px solid var(--hot);padding-left:10px}
+.st b{font:700 28px/1 Rajdhani,sans-serif;display:block}
+.btn{display:inline-block;background:var(--hot);color:#fff;font:700 17px Rajdhani,sans-serif;text-transform:uppercase;padding:7px 20px;margin-top:10px;clip-path:polygon(0 0,100% 0,100% 65%,92% 100%,0 100%)}
+.btn:hover{background:#ff5667}
+/* CAREER */
+.rk{text-align:center}
+.rk svg{width:96px;height:96px;margin:6px auto;display:block}
+.xp{height:8px;background:#2f3136;margin:6px 0 14px}.xp i{display:block;height:100%;width:72%;background:var(--hot)}
+.kv{display:flex;justify-content:space-between;border-bottom:1px solid var(--ln);padding:6px 0;font-size:12px}
+.kv b{font:700 18px Rajdhani,sans-serif}
+.ml{display:flex;flex-direction:column;gap:6px}
+.ml button{display:grid;grid-template-columns:86px 1fr auto;gap:12px;align-items:center;background:var(--p);border:1px solid var(--ln);border-left:4px solid var(--dim);text-align:left;padding:10px 12px;color:var(--ink)}
+.ml button.W{border-left-color:var(--hot)}
+.ml button.on{background:#2b1a1e;outline:1px solid var(--hot)}
+.ml strong{font:700 20px/1 Rajdhani,sans-serif;text-transform:uppercase;display:block}
+.ml small{color:var(--dim);font-size:11px}
+.ml em{font:700 15px Rajdhani,sans-serif;font-style:normal;color:var(--hot)}
+.ml button:not(.W) em{color:var(--dim)}
+.ach{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.ach div{border:1px solid var(--ln);background:#141517;padding:6px;font-size:10px;line-height:1.25;text-align:center;color:var(--dim)}
+.ach b{display:block;font:700 18px Rajdhani,sans-serif;color:var(--y)}
+/* COMMS */
+#s3{grid-template-columns:minmax(0,1fr) minmax(360px,44%)}
+.rad pre{position:absolute;inset:12px;color:#b9b5a9}
+.lob{display:flex;flex-direction:column;gap:12px}
+.modes{display:flex;gap:6px;flex-wrap:wrap}
+.modes button{background:none;border:1px solid var(--ln);padding:5px 12px;font:700 15px Rajdhani,sans-serif;text-transform:uppercase;color:var(--dim)}
+.modes button.on{border-color:var(--ink);color:var(--ink);background:#2a2c30}
+.pb{width:100%;background:var(--hot);color:#fff;border:0;padding:22px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font:700 44px/1 Rajdhani,sans-serif;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(0 0,100% 0,100% 62%,95% 100%,5% 100%,0 62%);transition:background .15s}
+.pb span{font-size:34px;display:inline-block}
+.pb:hover{background:#ff5667}.pb:hover span{animation:pl .6s steps(2) infinite}
+.pb[data-s="1"]{background:#3a3c40}.pb[data-s="1"] span{animation:spin 1s steps(8) infinite}
+.pb[data-s="2"]{background:var(--y);color:#141414;animation:fl .5s steps(2) infinite}
+.pb[data-s="3"]{background:var(--ink);color:#141414}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes fl{50%{background:#fff7a0}}
+#qs{min-height:42px;font-size:12px;color:var(--dim)}#qs b{color:var(--ink)}
+#lb{display:grid;gap:6px}
+#lb a,#lb button{display:flex;justify-content:space-between;border:1px solid var(--ln);background:#141517;padding:9px 12px;text-align:left;color:var(--ink)}
+#lb a:hover,#lb button:hover{border-color:var(--hot)}
+[hidden]{display:none!important}
+/* BAR */
+#bar{display:flex;justify-content:space-between;gap:12px;padding:6px 20px;border-top:1px solid var(--ln);font-size:10px;color:var(--dim);background:rgba(23,24,26,.92)}
+#bar b{color:var(--ink);font-weight:500}
+/* GLOW */
+.tabs{filter:drop-shadow(0 0 7px rgba(255,42,61,.4))}
+.gl{display:inline-block;margin-top:10px;filter:drop-shadow(0 0 8px var(--g))}.gl .btn{margin:0}
+.pbw{filter:drop-shadow(0 0 12px var(--g));transition:filter .2s}
+.pbw:has([data-s="1"]),.pbw:has([data-s="3"]){filter:none}
+.pbw:has([data-s="2"]){filter:drop-shadow(0 0 12px rgba(244,233,12,.4))}
+.pn:before{filter:drop-shadow(0 0 4px var(--hot))}
+.chip.h,.ml em,.cl button.on b,.big em,.ml button.W em{text-shadow:0 0 8px var(--g)}
+.chip.h{box-shadow:0 0 8px rgba(255,42,61,.25),inset 0 0 6px rgba(255,42,61,.15)}
+.slot.on,.cl button.on,.ml button.on{box-shadow:0 0 14px rgba(255,42,61,.28),inset 0 0 12px rgba(255,42,61,.12)}
+.seg s.f.l,.xp i{box-shadow:0 0 8px var(--g)}
+.st div{box-shadow:-6px 0 8px -6px var(--g)}
+.ml button.W{box-shadow:-4px 0 10px -4px var(--g)}
+#hero2{text-shadow:0 0 8px rgba(255,42,61,.8)}
+#hero{text-shadow:0 0 6px rgba(255,42,61,.18)}
+@media(max-width:860px){
+ #app{padding-bottom:54px}
+ #top{grid-template-columns:34px 1fr auto;gap:10px;padding:0 12px;height:48px}
+ #cur{display:block;font:700 20px Rajdhani,sans-serif;text-transform:uppercase}
+ .tabs{position:fixed;left:0;right:0;bottom:0;height:calc(54px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);background:#101112;border-top:1px solid var(--ln);gap:0;z-index:9;align-self:auto}
+ .tab{flex:1;font-size:13px;padding:0 2px;margin:0!important;clip-path:none!important;border-top:3px solid transparent}
+ .tab i{display:none}
+ .tab.on{background:#1f2023;border-top-color:var(--hot);color:var(--hot)}
+ .tab.play{padding:0}.tab.play.on{color:#fff;background:var(--hot)}
+ .util{gap:10px}.cv{padding:3px 8px;font-size:13px}
+ #bar{display:none}
+ .dk{display:none!important}
+ .scr{padding:8px 10px;gap:8px}
+ .pn{padding:8px}
+ h2{font-size:26px}
+ #s0{grid-template-rows:minmax(0,1fr) auto}
+ .big{font-size:17px}
+ #s1{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+ #s1.cv{grid-template-rows:minmax(0,1fr)}
+ .am{gap:8px}.av{grid-template-columns:1fr;grid-auto-rows:min-content;overflow:hidden}
+ #s1 .inv{grid-template-columns:repeat(6,1fr)}
+ .por{flex-direction:row;align-items:center;gap:10px;height:78px;padding:6px}
+ .por .w{flex:none;width:82px;height:100%}.por .lab:first-child{display:none}.por h2{font-size:24px!important}
+ #s1.cv .por{display:none}
+ .tb button{padding:5px 10px;font-size:15px}
+ .tabs{filter:none}.tab.on{text-shadow:0 0 8px var(--g)}
+ .bar{grid-template-columns:70px 1fr;font-size:10px;margin-bottom:3px}.bar span:last-child{display:none}
+ .slot{font-size:16px;aspect-ratio:1}
+ #s2{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+ .cl{flex-direction:row}.cl button{flex:1;grid-template-columns:1fr;padding:6px;text-align:center}.cl button strong,.cl button small{display:none}
+ .cd{grid-template-rows:minmax(0,28%) auto minmax(0,1fr)}
+ .cp h2{font-size:24px}.cx{grid-template-columns:1fr}.cx .st{flex-direction:row}.cx .st b{font-size:20px}.cx .st small{font-size:9px}
+ .cx p{font-size:12px}
+ .ml button{grid-template-columns:62px 1fr auto;padding:8px;gap:8px}.ml strong{font-size:17px}
+ .ach{grid-template-columns:repeat(3,1fr)}
+ #s3{grid-template-columns:1fr;grid-template-rows:150px minmax(0,1fr)}
+ .pb{font-size:34px;padding:16px}
+}
+@media(max-height:620px) and (min-width:861px){.bar{margin-bottom:2px}.slot{aspect-ratio:1.7}.big{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head>
+<body>
+<div id="app">
+<header id="top">
+ <svg class="logo" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" aria-label="S"><path d="M3 5h26L16 28z"/><path d="M10 12h12" stroke="#ff2a3d"/></svg>
+ <nav class="tabs" aria-label="Main">
+  <button class="tab" data-go="0"><i>1</i>Menu</button>
+  <button class="tab" data-go="1"><i>2</i>About</button>
+  <button class="tab" data-go="2"><i>3</i>Cases</button>
+  <button class="tab play" data-go="3"><b>▶</b>Comms</button>
+ </nav>
+ <div id="cur"></div>
+ <div class="util"><a class="s" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">tg</a><a class="s" href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a class="cv" href="resume.pdf" download="Saya-CV.pdf">↓ CV.PDF</a></div>
+</header>
+<main id="stage">
+<!-- 0 MENU -->
+<section class="scr" id="s0">
+ <div class="hw"><pre id="hero" aria-hidden="true"></pre><pre id="hero2" aria-hidden="true"></pre></div>
+ <div>
+  <h1 class="big sc">Saya designs interfaces that read like a good HUD: dense, legible, alive. <em>Open for contracts.</em></h1>
+  <div class="meta"><span class="chip h">STATUS: AVAILABLE</span><span class="chip">UX/UI DESIGNER</span><span class="chip">PRODUCT · SYSTEMS · GAME UI</span><span class="chip dk">PRESS 1–4 OR Q / E TO NAVIGATE</span></div>
+ </div>
+</section>
+<!-- 1 ABOUT -->
+<section class="scr" id="s1">
+ <div class="pn por"><div class="lab">// operator</div><div class="w"><pre id="por" aria-hidden="true"></pre></div><h2 class="sc" style="font-size:28px">Saya</h2><div class="lab">Class: UX/UI Designer · Lv 08</div></div>
+ <div class="am">
+  <div class="tb" id="ab"><button class="on" data-v="p">Profile &amp; loadout</button><button data-v="c">Career record</button></div>
+  <div class="av" id="vp">
+   <div class="pn">
+    <div class="lab">// dossier</div>
+    <p class="dk" style="margin:8px 0 12px;max-width:60ch">Product designer with eight years of shipping interfaces for fintech, logistics and games. I turn messy systems into screens people can read in one glance. Obsessed with hierarchy, feedback and the quiet details that make software feel responsive.</p>
+    <div class="lab" style="margin:6px 0">attributes</div>
+    <div id="attrs"></div>
+    <div class="dk" style="margin-top:10px"><span class="chip h">ACCESSIBILITY-FIRST</span><span class="chip">SYSTEMS THINKER</span><span class="chip">FAST PROTOTYPER</span><span class="chip">CLEAR WRITER</span></div>
+   </div>
+   <div class="pn iv"><div class="lab">// inventory · tools &amp; skills</div><div class="inv" id="inv" style="margin-top:8px"></div><div id="idesc"></div></div>
+  </div>
+  <div class="av" id="vc" hidden>
+   <div class="pn"><div class="lab">// career record · match history</div>
+    <div class="rs dk"><svg viewBox="0 0 96 96" fill="none" stroke="#ff2a3d" stroke-width="7"><path d="M12 36l36-20 36 20M12 56l36-20 36 20M12 76l36-20 36 20"/></svg><div><h2 style="font-size:30px">Lv 08</h2><div class="xp"><i></i></div></div><div class="k2"><b>43</b><span>shipped</span></div><div class="k2"><b>06</b><span>awards</span></div><div class="k2"><b>03</b><span>squads led</span></div><div class="k2"><b>30+</b><span>mentored</span></div></div>
+    <div class="ml" id="ml" style="margin-top:8px"></div></div>
+   <div class="pn"><div class="lab">// match details</div><div id="md" style="margin-top:8px"></div><div class="lab" style="margin-top:14px">// achievements</div><div class="ach" id="ach"></div></div>
+  </div>
+ </div>
+</section>
+<!-- 2 CASES -->
+<section class="scr" id="s2">
+ <div class="cl" id="cl"></div>
+ <div class="cd">
+  <div class="pn cp"><pre id="cpv" aria-hidden="true"></pre><div><h2 id="ct" class="sc"></h2><span class="chip h" id="ctag"></span></div></div>
+  <div class="tb" id="tb"><button class="on" data-t="b">Brief</button><button data-t="p">Process</button><button data-t="r">Result</button></div>
+  <div class="pn cx"><div><div class="lab" id="crole"></div><p id="ctx" style="margin-top:8px"></p><span class="gl"><a class="btn" href="#cases" id="copen">Open full case</a></span></div><div class="st" id="cst"></div></div>
+ </div>
+</section>
+<!-- 4 COMMS -->
+<section class="scr" id="s3">
+ <div class="pn rad dk" style="display:block"><div class="lab">// signal scan</div><pre id="rad" aria-hidden="true"></pre></div>
+ <div class="pn lob" style="justify-content:center">
+  <div><div class="lab">// communications</div><h2 class="sc">Ready to start?</h2></div>
+  <div class="modes" id="modes" role="group" aria-label="Queue type"><button class="on" data-m="Project">Project</button><button data-m="Collab">Collab</button><button data-m="Just hello">Just hello</button></div>
+  <div class="pbw"><button class="pb" id="play" data-s="0"><span>▶</span><b id="pl">Start</b></button></div>
+  <div id="qs" aria-live="polite"></div>
+  <div id="lb" hidden></div>
+ </div>
+</section>
+</main>
+<footer id="bar"><span>SAYA//OS 1.0 · SESSION <b id="clk">--:--</b></span><span>[Q] ◂ PREV · [1–4] JUMP · NEXT ▸ [E]</span><span>PING <b id="ping">14</b>ms · ● ONLINE</span></footer>
+</div>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RAMP=' .:-=+*#%@',NAMES=['Menu','About','Case files','Comms'],HASH=['menu','about','cases','comms'];
+const NAME='SAYA',MAIL='hello@saya.design';
+/* DATA */
+const ATTR=[['Research',8],['Systems',9],['Craft',9],['Prototype',8],['Facilitation',7],['Motion',6]];
+const ITEMS=[['Fg','Figma','legendary','Daily driver. Components, variables, dev-ready handoff. 8 years.'],['Ds','Design systems','legendary','Token-based systems adopted across 12 product teams.'],['Rs','User research','epic','Interviews, usability tests, diary studies, synthesis.'],['Pr','Prototyping','epic','Framer, ProtoPie and code prototypes to test feel, not just layout.'],['A11','Accessibility','epic','WCAG 2.2 audits and inclusive patterns built in from day one.'],['Mo','Motion','rare','Micro-interactions and state transitions in After Effects and Lottie.'],['Cs','HTML / CSS','rare','Design in the browser. I ship prototypes developers can reuse.'],['Ws','Workshops','rare','Facilitating design sprints and stakeholder alignment sessions.'],['Gu','Game UI','rare','HUD, menu flow and feedback design studies and one shipped indie title.'],['Dt','Analytics','common','Funnel reading, A/B tests, turning numbers into design decisions.'],['Wr','UX writing','common','Microcopy that tells people what happens next.'],['3D','Blender','common','Lightweight 3D for hero visuals and product renders.']];
+const RC={legendary:'#f4e90c',epic:'#ff2a3d',rare:'#ece9df',common:'#8b8e92'};
+const CASES=[
+{t:'Ledger Zero',tag:'Fintech · Mobile',y:'2025',role:'Lead designer · 6 months · team of 9',b:'A neobank app lost new users during identity checks. We were asked to cut the drop-off without weakening compliance.',p:'Mapped 14 verification states, tested three step models with 40 users, and rebuilt the flow as one live status screen with plain-language errors.',r:'Verification feels like a single task instead of a maze. Support load fell sharply and store ratings recovered.',s:[['+38%','activation'],['-52%','support tickets'],['4.8','store rating']]},
+{t:'Halcyon OS',tag:'Design system',y:'2024',role:'Systems designer · 9 months · 4 designers',b:'Eleven products shipped eleven button styles. Teams needed one source of truth that did not slow them down.',p:'Audited 600 components, defined tokens in three tiers, and shipped a documented library with contribution rules and office hours.',r:'Designers assemble screens faster and engineering reuses the same primitives everywhere.',s:[['12','teams onboarded'],['-40%','design time'],['96%','token coverage']]},
+{t:'Drift Control',tag:'Logistics · Dashboard',y:'2023',role:'Product designer · 5 months · solo design',b:'Dispatchers juggled six tools to track a fleet. Critical alerts were buried among routine updates.',p:'Shadowed night shifts, ranked information by urgency, and designed a dense, keyboard-first console with a strict colour budget.',r:'Dispatchers triage faster and rarely leave the main view. Training time dropped from weeks to days.',s:[['-31%','response time'],['6→1','tools replaced'],['9 days','to onboard']]},
+{t:'Night Market',tag:'E-commerce · Web',y:'2022',role:'UI designer · 4 months · team of 5',b:'A marketplace had traffic but weak checkout conversion, especially on mobile.',p:'Reviewed session recordings, simplified the cart, redesigned filters, and tested a one-thumb checkout on real devices.',r:'Mobile conversion climbed and cart abandonment fell across every tested market.',s:[['+22%','mobile conversion'],['-18%','cart abandonment'],['3.1s','faster load']]}];
+const JOBS=[
+{y:'2023—NOW',c:'Vektor Labs',r:'Senior product designer',x:'PROMOTED',k:'Led 3 squads · 2.1M monthly users',d:'Own the design direction for a logistics platform. Built the research practice, shipped the Halcyon design system and coached six designers.'},
+{y:'2020—23',c:'Orbital',r:'Product designer',x:'VICTORY',k:'12 launches · NPS +18',d:'Designed fintech onboarding, payments and the mobile app redesign. Partnered with engineering on a shared component library.'},
+{y:'2018—20',c:'Studio Plume',r:'UI designer',x:'VICTORY',k:'20+ client projects · 3 awards',d:'Crafted web and app interfaces for startups and brands. Learned to present, defend and ship under tight deadlines.'},
+{y:'2016—18',c:'Freelance',r:'Visual designer',x:'SOLO QUEUE',k:'First 15 clients',d:'Started with posters and landing pages. Taught myself UX through every project that went wrong.'}];
+const ACH=[['SOTD','Awwwards'],['CSS','Design awards'],['12','Teams on one system'],['MIC','Speaker, UX Conf'],['30+','Designers mentored'],['43','Products shipped']];
+/* ASCII ENGINE */
+let cur=-1,R=[],T=0,ci=0;
+function fit(el,cols){const w=el.clientWidth,h=el.clientHeight,fs=Math.max(4,w/(cols*.6));el.style.fontSize=fs+'px';return{cols,rows:Math.max(4,Math.floor(h/fs))}}
+const gen=(id,cols,fn)=>({el:$(id),cols,draw(g,t){let s='';for(let y=0;y<g.rows;y++){for(let x=0;x<g.cols;x++){const v=fn(x,y,t,g);s+=RAMP[v<=0?0:v>=1?9:v*10|0]}s+='\n'}return s}});
+const hero={el:$('#hero'),els:[$('#hero'),$('#hero2')],cols:innerWidth<860?44:100,buf:[],
+ init(g){this.cols=g.cols=innerWidth<860?44:100;const f=fit(this.el,this.cols);g.rows=f.rows;const c=document.createElement('canvas');c.width=g.cols;c.height=g.rows;const x=c.getContext('2d',{willReadFrequently:true}),a=.5,F='italic 800 100px Rajdhani,Impact,sans-serif';
+  x.setTransform(1,0,0,a,0,0);x.font=F;const m=x.measureText(NAME).width,fs=Math.min(g.rows*2.3,100*g.cols*.92/m);x.font=F.replace('100px',fs+'px');x.textAlign='center';x.textBaseline='middle';x.lineWidth=fs*.05;x.fillStyle=x.strokeStyle='#fff';x.fillText(NAME,g.cols/2,g.rows/2/a);x.strokeText(NAME,g.cols/2,g.rows/2/a);
+  const d=x.getImageData(0,0,g.cols,g.rows).data;g.mask=new Uint8Array(g.cols*g.rows);for(let i=0;i<g.mask.length;i++)g.mask[i]=d[i*4+3]>110;this.buf=[...g.mask].map(()=>'@&$#10'[Math.random()*6|0])},
+ draw(g,t){const H='@&$#10%',sw=Math.floor(t*9)%(g.rows+12);let s='';for(let y=0;y<g.rows;y++){for(let x=0;x<g.cols;x++){const i=y*g.cols+x;if(g.mask[i]){if(Math.random()<.035||Math.abs(y-sw)<2)this.buf[i]=H[Math.random()*7|0];s+=this.buf[i]}else s+=' '}s+='\n'}return s}};
+const por=gen('#por',34,(x,y,t,g)=>{const W=g.cols*.6,H=g.rows,px=x*.6,py=y,cx=W/2,e=(a,b,c,d)=>((px-a)/c)**2+((py-b)/d)**2,n=(Math.sin(px*1.1+t*2)+Math.sin(py*1.7-t*3))/4+.5,hy=H*.4;
+ if(Math.abs(py-hy)<H*.022&&e(cx,hy,H*.17,H*.2)<1)return .9+.1*Math.sin(t*9);
+ if(e(cx,hy,H*.17,H*.2)<1)return .18+.22*n;
+ const h=e(cx,hy,H*.26,H*.3);if(h<1)return h>.72?.95:.55+.3*n;
+ const s=e(cx,H*1.08,W*.5,H*.42);if(s<1)return s>.8?.9:.3+.3*n;
+ return Math.random()<.015?.4:0});
+const FX=[(x,y,t)=>(Math.sin(x*.12+t)+Math.sin(y*.35+t*1.3)+Math.sin((x*.5+y)*.1-t)+3)/6,
+(x,y,t,g)=>{const d=Math.hypot((x-g.cols/2)*.6,y-g.rows/2);return Math.max(0,Math.sin(d*.8-t*3))*(1-d/g.rows)*1.4},
+(x,y,t)=>((x>>2)+(y>>1)+(t*4|0))%6==0?.95:((x>>2)*7+(y>>1)*3)%11==0?.25:0,
+(x,y,t,g)=>{const h=.5+.4*Math.sin(x*.2+t*2)*Math.sin(x*.07-t),k=y/g.rows;return k>1-h?.2+.8*(1-(k-(1-h))/h):0}];
+const cpv=gen('#cpv',90,(x,y,t,g)=>FX[ci](x,y,t,g));
+const Q={s:0,t0:0,mode:'Project',w:0};
+const BL=[[.8,.6],[1.9,2.2],[2.6,-1.5],[1.2,-2.6],[3.4,1]];
+const rad=gen('#rad',60,(x,y,t,g)=>{const px=x*.6,py=y,cx=g.cols*.3,cy=g.rows/2,dx=px-cx,dy=py-cy,d=Math.hypot(dx,dy),r=g.rows*.47;if(d>r+.5)return 0;
+ const sp=Q.s==1?5:1.4,sa=(Q.w)%(Math.PI*2)-Math.PI,a=Math.atan2(dy,dx),df=((sa-a)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);let v=0;
+ if(Math.abs(d-r)<.5||d%(r/4)<.45)v=.3;if(Math.abs(dx)<.3||Math.abs(dy)<.5)v=Math.max(v,.2);if(df<1.3&&d<r)v=Math.max(v,.15+.85*(1-df/1.3)*.6);
+ for(const[ba,bd]of BL){const bx=cx+Math.cos(ba)*bd*r/3.6*1.4,by=cy+Math.sin(ba)*bd*r/3.6;if(Math.hypot(px-bx,py-by)<.9&&df<3.4)v=Math.max(v,1-df/3.4)}
+ return v});
+const RS={0:[hero],1:[por],2:[cpv],3:[rad]};
+function setup(r){r.g=r.g||{};if(r.init)r.init(r.g);else Object.assign(r.g,fit(r.el,r.cols))}
+let last=0;const slow=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function loop(ts){if(ts-last>(slow?900:75)){const dt=(ts-last)/1000;last=ts;T=ts/1000;Q.w+=dt*(Q.s==1?5:1.4);R.forEach(r=>{const s=r.draw(r.g,T);(r.els||[r.el]).forEach(e=>e.textContent=s)})}requestAnimationFrame(loop)}
+/* SCRAMBLE */
+function scr(el){const f=el.dataset.s||(el.dataset.s=el.textContent);let i=0;clearInterval(el._t);el._t=setInterval(()=>{i++;el.textContent=[...f].map((c,k)=>c===' '||k<f.length*i/14?c:'#$@&1%0'[Math.random()*7|0]).join('');if(i>=14){clearInterval(el._t);el.textContent=f}},28)}
+function sc(el,txt){el.dataset.s=txt;el.textContent=txt;scr(el)}
+/* NAV */
+function go(n){n=(n+4)%4;if(n===cur)return;cur=n;$$('.scr').forEach((s,i)=>s.classList.toggle('on',i===n));$$('.tab').forEach((t,i)=>{t.classList.toggle('on',i===n);t.setAttribute('aria-current',i===n?'page':'false')});$('#cur').textContent=NAMES[n];
+ R=RS[n]||[];R.forEach(setup);$$('.sc',$('#s'+n)).forEach(scr);history.replaceState(null,'','#'+HASH[n])}
+$$('.tab').forEach(b=>b.onclick=()=>go(+b.dataset.go));
+addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.toLowerCase();if(k=='q'||e.key=='ArrowLeft')go(cur-1);else if(k=='e'||e.key=='ArrowRight')go(cur+1);else if(/^[1-4]$/.test(k))go(+k-1)});
+addEventListener('resize',()=>R.forEach(setup));
+/* ABOUT */
+$('#attrs').innerHTML=ATTR.map(([n,v])=>`<div class="bar"><span>${n}</span><div class="seg">${Array.from({length:10},(_,i)=>`<s class="${i<v?'f':''}${i==v-1?' l':''}"></s>`).join('')}</div><span>${v}</span></div>`).join('');
+const inv=$('#inv');inv.innerHTML=ITEMS.map((it,i)=>`<button class="slot" style="--c:${RC[it[2]]}" data-i="${i}" aria-label="${it[1]}">${it[0]}</button>`).join('')+'<span class="slot e">+</span>'.repeat(0);
+function item(i){$$('.slot',inv).forEach((s,k)=>s.classList.toggle('on',k==i));const it=ITEMS[i];$('#idesc').innerHTML=`<h3></h3><div class="lab" style="color:${RC[it[2]]}">${it[2]}</div><p style="margin-top:4px;font-size:12px">${it[3]}</p>`;sc($('#idesc h3'),it[1])}
+inv.onclick=e=>{const b=e.target.closest('.slot[data-i]');if(b)item(+b.dataset.i)};item(0);
+/* CASES */
+$('#cl').innerHTML=CASES.map((c,i)=>`<button data-i="${i}"><b>0${i+1}</b><span><strong>${c.t}</strong><small>${c.tag} · ${c.y}</small></span></button>`).join('');
+let ctab='b';
+function showCase(i,keep){ci=i;$$('#cl button').forEach((b,k)=>b.classList.toggle('on',k==i));const c=CASES[i];if(!keep){sc($('#ct'),c.t);ctab='b';$$('#tb button').forEach(b=>b.classList.toggle('on',b.dataset.t=='b'))}$('#ctag').textContent=c.tag+' · '+c.y;$('#crole').textContent=c.role;$('#ctx').textContent=c[ctab];$('#cst').innerHTML=c.s.map(([a,b])=>`<div><b>${a}</b><small class="lab">${b}</small></div>`).join('')}
+$('#cl').onclick=e=>{const b=e.target.closest('button');if(b)showCase(+b.dataset.i)};
+$('#tb').onclick=e=>{const b=e.target.closest('button');if(!b)return;ctab=b.dataset.t;$$('#tb button').forEach(x=>x.classList.toggle('on',x==b));showCase(ci,1)};
+showCase(0);
+/* CAREER */
+$('#ml').innerHTML=JOBS.map((j,i)=>`<button class="${j.x=='SOLO QUEUE'?'':'W'}" data-i="${i}"><span class="lab">${j.y}</span><span><strong>${j.c}</strong><small>${j.r}</small></span><em>${j.x}</em></button>`).join('');
+function job(i){$$('#ml button').forEach((b,k)=>b.classList.toggle('on',k==i));const j=JOBS[i];$('#md').innerHTML=`<h2 style="font-size:28px"></h2><div class="lab" style="margin:4px 0 6px">${j.r} · ${j.y}</div><span class="chip h">${j.k}</span><p style="font-size:12px;margin-top:6px">${j.d}</p>`;sc($('#md h2'),j.c)}
+$('#ml').onclick=e=>{const b=e.target.closest('button');if(b)job(+b.dataset.i)};job(0);
+$('#ach').innerHTML=ACH.map(a=>`<div><b>${a[0]}</b>${a[1]}</div>`).join('');
+$('#ab').onclick=e=>{const b=e.target.closest('button');if(!b)return;const c=b.dataset.v=='c';$$('#ab button').forEach(x=>x.classList.toggle('on',x==b));$('#vp').hidden=c;$('#vc').hidden=!c;$('#s1').classList.toggle('cv',c);if(c)job(0)};
+/* COMMS: play → queue → match found → lobby */
+function qset(s){Q.s=s;Q.t0=Date.now();const b=$('#play');b.dataset.s=s;$('#pl').textContent=['Start','Cancel','Accept','Leave lobby'][s];$('#modes').hidden=s>0;$('#lb').hidden=s<3;if(s==3)$('#lb').innerHTML=`<a href="mailto:${MAIL}?subject=${encodeURIComponent(Q.mode+' — hello Saya')}"><span>Send transmission</span><b>${MAIL}</b></a><button id="cp"><span>Copy address</span><b>⧉</b></button>`;qtxt()}
+function qtxt(){const t=Math.floor((Date.now()-Q.t0)/1000),m=String(t/60|0).padStart(2,'0')+':'+String(t%60).padStart(2,'0');$('#qs').innerHTML=['Queue: <b>'+Q.mode+'</b>. Typical reply time: under 24h.','Searching for a good fit… <b>'+m+'</b>','<b>Match found.</b> A project slot is open. Accept to see contact details.','<b>Connection established.</b> Choose how to reach me.'][Q.s]}
+$('#play').onclick=()=>{if(Q.s==0){qset(1);Q.iv=setTimeout(()=>Q.s==1&&qset(2),3200)}else if(Q.s==1){clearTimeout(Q.iv);qset(0)}else if(Q.s==2)qset(3);else qset(0)};
+$('#modes').onclick=e=>{const b=e.target.closest('button');if(!b)return;Q.mode=b.dataset.m;$$('#modes button').forEach(x=>x.classList.toggle('on',x==b));qtxt()};
+$('#lb').onclick=e=>{if(e.target.closest('#cp')){try{navigator.clipboard.writeText(MAIL);$('#cp span').textContent='Copied'}catch(_){$('#cp span').textContent=MAIL}}};
+qset(0);setInterval(()=>Q.s==1&&qtxt(),500);
+/* STATUS BAR */
+setInterval(()=>{$('#clk').textContent=new Date().toTimeString().slice(0,5);$('#ping').textContent=12+Math.random()*8|0},1000);$('#clk').textContent=new Date().toTimeString().slice(0,5);
+/* BOOT */
+document.fonts.ready.then(()=>{const h=HASH.indexOf(location.hash.slice(1));go(h<0?0:h);requestAnimationFrame(loop)});
+</script>
+</body></html>
