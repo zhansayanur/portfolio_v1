@@ -4,6 +4,8 @@ A portfolio that behaves like a game terminal instead of a website. It takes its
 
 > **Concept v1.** This is the first of several design concepts, built to explore one direction. It is not the final portfolio, and all names, projects, jobs and contact details are placeholders.
 
+![Menu screen of the Saya portfolio: animated ASCII name, tab navigation and CV download](preview.png)
+
 ## Concept
 
 - **No scrolling.** Every screen fits in one viewport, like a menu in a game.
